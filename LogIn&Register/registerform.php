@@ -1,3 +1,36 @@
+<?php
+
+@include 'config.php';
+
+if(isset($_POST['submit'])){
+
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pass = md5($_POST['password']);
+    $cpass = md5($_POST['cpassword']);
+    $user_type = $_POST['password'];
+
+    $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
+
+    $result = mysqli_query($conn, $select);
+
+    if(mysqli_num_rows($result) > 0){
+        $error[] = 'user already exists!';
+    }else{
+
+        if($pass != $cpass){
+            $error[] = 'password not matched';
+        }else{
+            $insert = "INSERT INTO user_form(name, email, password, user_type) VALUES('$name','$email','$pass','$user_type')";
+            header('location:loginform.php');
+        }
+    }
+
+};
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +45,15 @@
 
         <form action="" method="post">
             <h3>register now</h3>
+            <?php
+            
+            if(isset($error)){
+                foreach($error as $error){
+                    echo '<span class="error-msg">'.$error.'</span>';
+                }
+            }
+
+            ?>
             <input type="text" name="name" required placeholder="enter your name">
             <input type="email" name="email" required placeholder="enter your email">
             <input type="password" name="password" required placeholder="enter your password">
@@ -21,7 +63,7 @@
                 <option value="admin">admin</option>
             </select>
             <input type="submit" name="submit" value="register now" class="form-btn">
-            <p>already have an account? <a href="login_form.php">login now</a></p>
+            <p>already have an account? <a href="loginform.php">login now</a></p>
         </form>
 
     </div>

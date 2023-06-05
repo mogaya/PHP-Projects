@@ -40,8 +40,8 @@
     color: #333;
   }
 
-  .container .content h3 span{
-    background: crimson;
+  .container .content h1 span{
+    color: crimson;
   }
 
   .container .content p{

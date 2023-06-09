@@ -8,7 +8,7 @@ require 'db_conn.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To-Do List</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div class="main-section">
@@ -36,8 +36,8 @@ require 'db_conn.php';
             <?php if($todos->rowCount() <= 0){ ?>
                 <div class="todo-item">
                     <div class="empty">
-                        <img src="img/f.png" width="100%" />
-                        <img src="img/Ellipsis.gif" width="80px">
+                        <img src="/img/f.png" width="100%" />
+                        <img src="/img/Ellipsis.gif" width="80px">
                     </div>
                 </div>
             <?php } ?>
